@@ -23,6 +23,10 @@ registerPlugin({
 			type: 'string',
 			placeholder: ""
 		}
+		exclude_groups: {
+            title: 'Comma Seperated List of Group IDs which are exclude to remove',
+            type: 'string'
+        },
 		punition: {
 			title: 'Select the punition',
 			type: 'select',
