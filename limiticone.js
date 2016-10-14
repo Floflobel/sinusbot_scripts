@@ -24,7 +24,7 @@ registerPlugin({
 			placeholder: ""
 		}
 		exclude_groups: {
-            title: 'Comma Seperated List of Group IDs which are exclude to remove',
+            title: 'Comma Seperated List of Group IDs which are exclude to remove and count',
             type: 'string'
         },
 		punition: {
