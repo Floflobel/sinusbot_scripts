@@ -49,6 +49,7 @@ registerPlugin({
 				var count = 0;
 				for (var k in srvgroups) {
 					if (srvgroups.hasOwnProperty(k)) {
+						sinusbot.log(srvgroups[k].i)
 						++count;
 					}
 				}
