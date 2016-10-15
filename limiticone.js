@@ -44,14 +44,23 @@ registerPlugin({
 	}
 }, 	function(sinusbot, config) {
 		sinusbot.on('clientMove', function(ev) {
-			var srvgroups = ev.clientServerGroups
+			var srvgroups = ev.clientServerGroups;
+			var srvgroupsfinal = {};
 			if(ev.oldChannel == 0) {
 				var count = 0;
 				for (var k in srvgroups) {
 					if (srvgroups.hasOwnProperty(k)) {
-						sinusbot.log(srvgroups[k].i)
 						++count;
-					}
+						
+						var arrayexcludegroups = config.exclude_groups.split(',')
+						sinusbot.log('array : ' + arrayexcludegroups[k])
+						if (srvgroups[k].i != arrayexcludegroups[k]) {
+						srvgroupsfinal[k] = srvgroups[k].i
+						
+						sinusbot.log('final : ' + srvgroupsfinal[k])
+						sinusbot.log('split : ')
+						}
+					} 	
 				}
 			sinusbot.log("'" + ev.clientNick + "' is connected. Number of groups: " + count);
 			}
