@@ -45,10 +45,10 @@ registerPlugin({
 }, 	function(sinusbot, config) {
 		sinusbot.on('clientMove', function(ev) {
 			
-			var srvgroupsfinal = {};
+			var srvgroupsfinalofexclude = {};
+			
 			
 			if(ev.oldChannel == 0) {
-				
 				// Compte le nombre de groupe que le joueur à 
 				var srvgroups = ev.clientServerGroups;
 				var countuser = 0;
@@ -68,19 +68,20 @@ registerPlugin({
 				}
 				
 				// count the number of real group without excludegroup
+				var count;
 				var countfinal = 0;
 				for (var h in srvgroups) {
 					for(i = 0; i <= countexclude; i++) {
 						if (srvgroups[h].i == arrayexcludegroups[i]) {
 							++countfinal;
-							sinusbot.log(srvgroups[h].i + ' ' + arrayexcludegroups[i] + ' ' + i + ' ' + countfinal)
+							srvgroupsfinalofexclude[countfinal-1] = arrayexcludegroups[i]
 						}
 					}
 				}
 				count = countuser - countfinal	
 			}		
 			
-			
+			// Message or poke with function of the group
 			if(count > config.limit) {	
 				if (config.optionmessage == 0) {
 					return;
@@ -93,6 +94,30 @@ registerPlugin({
 					sinusbot.poke(ev.clientId, message);
 				}
 				
+				// Remove group without exclude_groups
+				//randomnumber = getRandomIntInclusive(mingroup, maxgroup)
+				//sinusbot.log('Debug random' + randomnumber)
+				var removegroup = 31;
+				for (var g in srvgroups) {
+					for(i = 0; i <= countfinal; i++) {
+						if (removegroup == srvgroupsfinalofexclude[g]) {
+							
+						}
+						else {
+							//sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + removegroup)
+							//removeClientFromServerGroup(ev.clientId, removegroup)
+						}
+					}
+				}
 			}
+			
+			
+
 		});
 	});
+	
+	function getRandomIntInclusive(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
