@@ -44,26 +44,42 @@ registerPlugin({
 	}
 }, 	function(sinusbot, config) {
 		sinusbot.on('clientMove', function(ev) {
-			var srvgroups = ev.clientServerGroups;
+			
 			var srvgroupsfinal = {};
+			
 			if(ev.oldChannel == 0) {
-				var count = 0;
+				
+				// Compte le nombre de groupe que le joueur à 
+				var srvgroups = ev.clientServerGroups;
+				var countuser = 0;
 				for (var k in srvgroups) {
 					if (srvgroups.hasOwnProperty(k)) {
-						++count;
-						
-						var arrayexcludegroups = config.exclude_groups.split(',')
-						sinusbot.log('array : ' + arrayexcludegroups[k])
-						if (srvgroups[k].i != arrayexcludegroups[k]) {
-						srvgroupsfinal[k] = srvgroups[k].i
-						
-						sinusbot.log('final : ' + srvgroupsfinal[k])
-						sinusbot.log('split : ')
-						}
-					} 	
+						++countuser;
+					}
 				}
-			sinusbot.log("'" + ev.clientNick + "' is connected. Number of groups: " + count);
-			}
+				
+				// compte le nombre de groupe à exclure 
+				var arrayexcludegroups = config.exclude_groups.split(',')
+				var countexclude = 0;
+				for(var j in arrayexcludegroups) {
+					if (arrayexcludegroups.hasOwnProperty(k)) {
+						++countexclude;
+					}
+				}
+				
+				// count the number of real group without excludegroup
+				var countfinal = 0;
+				for (var h in srvgroups) {
+					for(i = 0; i <= countexclude; i++) {
+						if (srvgroups[h].i == arrayexcludegroups[i]) {
+							++countfinal;
+							sinusbot.log(srvgroups[h].i + ' ' + arrayexcludegroups[i] + ' ' + i + ' ' + countfinal)
+						}
+					}
+				}
+				count = countuser - countfinal	
+			}		
+			
 			
 			if(count > config.limit) {	
 				if (config.optionmessage == 0) {
@@ -72,7 +88,7 @@ registerPlugin({
 				else if (config.optionmessage == 1) {
 					sinusbot.chatPrivate(ev.clientId, config.message)
 				}
-				else if (config.optionmessage == 2) {
+				else if (config.optionmes-sage == 2) {
 					message = config.message.substring(0, 100);
 					sinusbot.poke(ev.clientId, message);
 				}
