@@ -8,6 +8,11 @@ registerPlugin({
             title: 'Default channel to return to',
             type: 'channel'
         }
+		couldown: {
+			title: 'Set the time to the bot are move (milliseconds)',
+			type: 'number',
+			placeholder: "60"
+		}
     }
 }, function(sinusbot, config) {
     if (!config.defaultChannel) {
@@ -15,12 +20,22 @@ registerPlugin({
         return;
     }
 
-    
     sinusbot.on('clientCount', function(ev) {
         if (ev.count <= 1 ) {
-            log('Returning to default channel ');
-            join(config.defaultChannel);
-            return;
+			if (!config.couldown || config.couldown == 0) {
+				sinusbot.log('Returning to default channel ');
+				join(config.defaultChannel);
+				return;
+			}
+			else {
+				if (config.couldown <= 1000) {
+					config.couldown = 1000;
+				}
+				setTimeout(function() {
+					join(config.defaultChannel);
+					return;
+				}, config.couldown);
+			}
         }
     });
 
