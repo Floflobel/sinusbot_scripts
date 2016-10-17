@@ -105,7 +105,7 @@ registerPlugin({
 						}
 						else {
 							//sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + removegroup)
-							//removeClientFromServerGroup(ev.clientId, removegroup)
+							sinusbot.removeClientFromServerGroup(ev.clientIdi.dbId, removegroup)
 						}
 					}
 				}
