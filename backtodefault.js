@@ -31,9 +31,18 @@ registerPlugin({
 				if (config.couldown <= 1000) {
 					config.couldown = 1000;
 				}
+				sinusbot.log('test' + ev.count)
 				setTimeout(function() {
-					join(config.defaultChannel);
-					return;
+					if (ev.count <= 1)
+					{
+						sinusbot.log('test2 : ' + ev.count)
+						join(config.defaultChannel);
+						return;
+					}
+					else
+					{
+						return;
+					}
 				}, config.couldown);
 			}
         }
