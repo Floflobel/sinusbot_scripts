@@ -31,9 +31,15 @@ registerPlugin({
 				if (config.couldown <= 1000) {
 					config.couldown = 1000;
 				}
-				sinusbot.log('test' + ev.count)
+				
 				setTimeout(function() {
-					if (ev.count <= 1)
+					var numberusers = sinusbot.getChannel(getCurrentChannelId()).clients;
+	                                var countnumberusers = 0;
+                	                for (var k in numberusers) {
+                                        	++countnumberusers;
+                                	}
+
+					if (countnumberusers <= 1)
 					{
 						sinusbot.log('test2 : ' + ev.count)
 						join(config.defaultChannel);
