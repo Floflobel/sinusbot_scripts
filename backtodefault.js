@@ -1,8 +1,8 @@
 registerPlugin({
     name: 'Back To Default',
-    version: '1.0',
+    version: '1.1',
     description: 'If everyone leaves the current channel, the bot will move back to its default channel',
-    author: 'XoXFaby <xoxfaby@gmail.com>',
+    author: 'XoXFaby <xoxfaby@gmail.com>, Floflobel',
     vars: {
         defaultChannel: {
             title: 'Default channel to return to',
