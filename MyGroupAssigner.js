@@ -5,7 +5,7 @@ registerPlugin({
 	author: 'Floflobel',
 	vars: {
 		a_groups: {
-			title: 'Comma Seperated List of Group IDs which are exclude to remove and count',
+			title: 'Comma Seperated List of Group IDs wich may be affected',
 			type: 'string'
 		},
 		b_message: {
@@ -14,6 +14,10 @@ registerPlugin({
 		},
 		c_command: {
 			title: 'The command, which should be used to assign the group.',
+			type: 'string'
+		}
+		d_command: {
+			title: 'The command, which should be used to remove the group.',
 			type: 'string'
 		}
 	}
