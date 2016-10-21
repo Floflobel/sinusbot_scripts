@@ -95,17 +95,18 @@ registerPlugin({
 				}
 				
 				// Remove group without exclude_groups
-				//randomnumber = getRandomIntInclusive(mingroup, maxgroup)
-				//sinusbot.log('Debug random' + randomnumber)
+				//message1 = 'Debug random' + getRandomArbitrary(1, 5).toString()
+				//sinusbot.log(message);
 				var removegroup = 31;
+				
 				for (var g in srvgroups) {
 					for(i = 0; i <= countfinal; i++) {
 						if (removegroup == srvgroupsfinalofexclude[g]) {
 							
 						}
 						else {
-							//sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + removegroup)
-							//sinusbot.removeClientFromServerGroup(ev.client.dbId, removegroup);
+							sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + removegroup);
+							//sinusbot.removeClientFromServerGroup(ev.client.dbid, removegroup);
 						}
 					}
 				}
@@ -116,9 +117,7 @@ registerPlugin({
 		});
 	});
 	
-	function getRandomIntInclusive(min, max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min +1)) + min;
-	}
+//	function getRandomArbitrary(min, max) {
+	//	return Math.random() * (max - min) + min;
+//	}
 

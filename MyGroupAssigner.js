@@ -23,9 +23,15 @@ registerPlugin({
 	}
 }, 	function(sinusbot, config) {
 		sinusbot.on('chat', function(ev) {
-			if(ev.msg == config.c_command && ev.mode == 2) {
+			if(ev.msg == config.c_command && ev.mode == 1) {
 				sinusbot.addClientToServerGroup(ev.client.dbid, config.a_groups);
-				sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+				sinusbot.log('test');
+				//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+			}
+			else if(ev.msg == config.d_command && ev.mode == 1) {
+				sinusbot.removeClientFromServerGroup(ev.client.dbid, config.a_groups);
+				sinusbot.log('test');
+				//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
 			}
 		});
 	});
