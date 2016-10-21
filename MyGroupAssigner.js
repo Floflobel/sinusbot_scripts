@@ -24,7 +24,7 @@ registerPlugin({
 }, 	function(sinusbot, config) {
 		sinusbot.on('chat', function(ev) {
 			if(ev.msg == config.c_command && ev.mode == 2) {
-				sinusbot.addClientToServerGroup(ev.client.dbid, config.a_group);
+				sinusbot.addClientToServerGroup(ev.client.dbid, config.a_groups);
 				sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
 			}
 		});
