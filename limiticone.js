@@ -89,35 +89,51 @@ registerPlugin({
 				else if (config.optionmessage == 1) {
 					sinusbot.chatPrivate(ev.clientId, config.message)
 				}
-				else if (config.optionmes-sage == 2) {
+				else if (config.optionmessage == 2) {
 					message = config.message.substring(0, 100);
 					sinusbot.poke(ev.clientId, message);
 				}
 				
+				// Get min group and max group
+				// var minvar = 99999
+				// for (var e = 0; e < countuser; e++) {
+					// if(ev.clientServerGroups[e].i < minvar) {
+						// minvar = ev.clientServerGroups[e].i;
+					// }
+					// sinusbot.log('get min group :' + minvar);
+				// }
+				
+				
+				
+				
+				// Get random number 
+				var randomint = parseInt(getRandomArbitrary(1, 5).toString());
+				var message1 = "Debug random : '" + randomint + "'.";
+				sinusbot.log(message1);
+				
 				// Remove group without exclude_groups
-				//message1 = 'Debug random' + getRandomArbitrary(1, 5).toString()
-				//sinusbot.log(message);
 				var removegroup = 31;
 				
 				for (var g in srvgroups) {
-					for(i = 0; i <= countfinal; i++) {
-						if (removegroup == srvgroupsfinalofexclude[g]) {
-							
+					//for(i = 0; i <= countfinal; i++) {
+					for(var t in srvgroups) {
+						if (srvgroups[g].i == srvgroupsfinalofexclude[t]) {
+							sinusbot.log('ttttt')
 						}
 						else {
-							sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + removegroup);
-							//sinusbot.removeClientFromServerGroup(ev.client.dbid, removegroup);
+							sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + srvgroups[g].i);
+							sinusbot.removeClientFromServerGroup(ev.client.dbid, srvgroups[g].i);
+							return;
 						}
 					}
+					//}
 				}
 			}
-			
-			
-
 		});
-	});
 	
-//	function getRandomArbitrary(min, max) {
-	//	return Math.random() * (max - min) + min;
-//	}
+	
+		function getRandomArbitrary(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+	});
 
