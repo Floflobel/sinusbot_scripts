@@ -94,46 +94,15 @@ registerPlugin({
 					sinusbot.poke(ev.clientId, message);
 				}
 				
-				// Get min group and max group
-				// var minvar = 99999
-				// for (var e = 0; e < countuser; e++) {
-					// if(ev.clientServerGroups[e].i < minvar) {
-						// minvar = ev.clientServerGroups[e].i;
-					// }
-					// sinusbot.log('get min group :' + minvar);
-				// }
-				
-				
-				
-				
-				// Get random number 
-				var randomint = parseInt(getRandomArbitrary(1, 5).toString());
-				var message1 = "Debug random : '" + randomint + "'.";
-				sinusbot.log(message1);
-				
-				// Remove group without exclude_groups
-				var removegroup = 31;
-				
 				for (var g in srvgroups) {
-					//for(i = 0; i <= countfinal; i++) {
 					for(var t in srvgroups) {
-						if (srvgroups[g].i == srvgroupsfinalofexclude[t]) {
-							sinusbot.log('ttttt')
-						}
-						else {
-							sinusbot.log('Debug remove : ' + ev.clientId + ' - ' + srvgroups[g].i);
+						if (srvgroups[g].i != srvgroupsfinalofexclude[t]) {
 							sinusbot.removeClientFromServerGroup(ev.client.dbid, srvgroups[g].i);
 							return;
 						}
 					}
-					//}
 				}
 			}
 		});
-	
-	
-		function getRandomArbitrary(min, max) {
-			return Math.random() * (max - min) + min;
-		}
 	});
 

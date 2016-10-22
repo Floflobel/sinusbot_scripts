@@ -23,15 +23,44 @@ registerPlugin({
 	}
 }, 	function(sinusbot, config) {
 		sinusbot.on('chat', function(ev) {
-			if(ev.msg == config.c_command && ev.mode == 1) {
-				sinusbot.addClientToServerGroup(ev.client.dbid, config.a_groups);
-				sinusbot.log('test');
-				//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+			
+			var chatMessage = ev.msg;
+			var args = chatMessage.split(" ");
+			var groupexist = 'False';
+			
+			if(ev.mode < 3 && args[1].length >= 1 && (args[0] == config.c_command || args[0] == config.d_command )) {
+				var srvgroups = ev.clientServerGroups;
+				if(config.c_command == args[0]) {
+					for (var k in srvgroups) {
+						if (srvgroups[k].i == args[1]) {
+							sinusbot.log('already group assign');
+							return;
+						}
+					}
+					sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
+					sinusbot.log('test');
+					//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+					return;
+				}
+				else if(config.d_command == args[0]) {					
+					for (var k in srvgroups) {
+						if (srvgroups[k].i == args[1]) {
+							groupexist = 'True';
+						}
+					}
+					if(groupexist == 'True') {
+						sinusbot.removeClientFromServerGroup(ev.client.dbid, args[1]);
+						sinusbot.log('test');
+						//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+					}
+					else {
+						sinusbot.log('False')
+					}
+				}
 			}
-			else if(ev.msg == config.d_command && ev.mode == 1) {
-				sinusbot.removeClientFromServerGroup(ev.client.dbid, config.a_groups);
-				sinusbot.log('test');
-				//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+			else {
+				sinusbot.log('error');
+				return;
 			}
 		});
 	});
