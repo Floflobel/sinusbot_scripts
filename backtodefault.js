@@ -27,6 +27,16 @@ registerPlugin({
 		}
     }
 }, function(sinusbot, config) {
+	//Example
+	// for(var i = 0; i < allchannel.length; i++){
+          // for (var client = 0; client < allchannel[i].clients.length; client++) {
+            // if(allchannel[i].clients[client].uid == ev.clientUid) {
+              // nickname = allchannel[i].clients[client].nick;
+              // clients = allchannel[i].clients;
+             // }
+          // }
+	// }
+	
     if (!config.defaultChannel) {
         log('Invalid default channel');
         return;
