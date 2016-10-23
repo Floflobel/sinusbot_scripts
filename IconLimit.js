@@ -1,7 +1,7 @@
 registerPlugin({
 	name: 'LimitIcone',
 	version: '1.0',
-	description: 'Limit icone',
+	description: 'IconLimit',
 	author: 'Floflobel',
 	vars: {
 		limit: {
