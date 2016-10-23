@@ -13,6 +13,18 @@ registerPlugin({
 			type: 'number',
 			placeholder: "60"
 		}
+		excludebot {
+			title: 'Select option for exclude bot',
+			type: 'select',
+			options: [
+				'Server Group ID',
+				'Identity',
+			]
+		}
+		servergroupid {
+			title: 'Insert the Server Group ID of your bot (if selected)'
+			type: 'number'
+		}
     }
 }, function(sinusbot, config) {
     if (!config.defaultChannel) {
