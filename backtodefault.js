@@ -25,18 +25,12 @@ registerPlugin({
 			title: 'Insert the Server Group ID of your bot (if selected)'
 			type: 'number'
 		}
+		uidbot {
+			title: 'Insert the UID of your bot (if selected)'
+			type: 'string'
+		}
     }
 }, function(sinusbot, config) {
-	//Example
-	// for(var i = 0; i < allchannel.length; i++){
-          // for (var client = 0; client < allchannel[i].clients.length; client++) {
-            // if(allchannel[i].clients[client].uid == ev.clientUid) {
-              // nickname = allchannel[i].clients[client].nick;
-              // clients = allchannel[i].clients;
-             // }
-          // }
-	// }
-	
     if (!config.defaultChannel) {
         log('Invalid default channel');
         return;
@@ -44,10 +38,17 @@ registerPlugin({
 
     sinusbot.on('clientCount', function(ev) {
 	// Function for get uid of user in channel
-	for(i=0; i<ev.count; i++) {
+		var numberofbotinchannel = 0;
+		for(i=0; i<ev.count; i++) {
                 sinusbot.log(sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']);
+				var uiduserinchannel = sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']
+				if (uiduserinchannel = config.uidbot) { 
+					numberofbotinchannel++;
+				}
         }
-        if (ev.count <= 1 ) {
+		
+		
+        if (ev.count <= 1) {
 			if (!config.couldown || config.couldown == 0) {
 				sinusbot.log('Returning to default channel ');
 				join(config.defaultChannel);
@@ -60,10 +61,10 @@ registerPlugin({
 				
 				setTimeout(function() {
 					var numberusers = sinusbot.getChannel(getCurrentChannelId()).clients;
-	                                var countnumberusers = 0;
-                	                for (var k in numberusers) {
-                                        	++countnumberusers;
-                                	}
+	                var countnumberusers = 0;
+					for (var k in numberusers) {
+							++countnumberusers;
+					}
 
 					if (countnumberusers <= 1)
 					{
