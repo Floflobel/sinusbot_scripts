@@ -43,6 +43,10 @@ registerPlugin({
     }
 
     sinusbot.on('clientCount', function(ev) {
+	// Function for get uid of user in channel
+	for(i=0; i<ev.count; i++) {
+                sinusbot.log(sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']);
+        }
         if (ev.count <= 1 ) {
 			if (!config.couldown || config.couldown == 0) {
 				sinusbot.log('Returning to default channel ');
