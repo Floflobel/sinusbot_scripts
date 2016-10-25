@@ -46,6 +46,7 @@ registerPlugin({
         return;
     }
 
+
     sinusbot.on('clientCount', function(ev) {
 		sinusbot.log(countbotinchannel);
 		if (ev.count <= 1) {
@@ -79,9 +80,8 @@ registerPlugin({
 				}, config.couldown);
 			}
         }
-    });
 
-    log('Back To Default initialized...');
+    });
 
 } function countbotinchannel() {
 	var numberofbotinchannel = 0;
@@ -93,4 +93,5 @@ registerPlugin({
 				}
         }
 	return numberofbotinchannel;
+   });
 });
