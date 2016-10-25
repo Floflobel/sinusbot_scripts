@@ -30,23 +30,7 @@ registerPlugin({
 			type: 'string'
 		}
     }
-}, function(sinusbot, config) {
-    if (!config.defaultChannel) {
-        log('Invalid default channel');
-        return;
-    }
-   function(sinusbot, config) {
-    if (!config.servergroupid) {
-        log('Invalid Server Group');
-        return;
-    }
-   function(sinusbot, config) {
-    if (!config.uidbot) {
-        log('Invalid UID');
-        return;
-    }
-
-
+}, 
     sinusbot.on('clientCount', function(ev) {
 		sinusbot.log(countbotinchannel);
 		if (ev.count <= 1) {
@@ -80,12 +64,11 @@ registerPlugin({
 				}, config.couldown);
 			}
         }
-
     });
-
-} function countbotinchannel() {
-	var numberofbotinchannel = 0;
-		for(i=0; i<ev.count; i++) {
+ 
+	function countbotinchannel() {
+		var numberofbotinchannel = 0;
+			for(i=0; i<ev.count; i++) {
                 sinusbot.log(sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']);
 				var uiduserinchannel = sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']
 				if (uiduserinchannel = config.uidbot) { 
@@ -94,4 +77,4 @@ registerPlugin({
         }
 	return numberofbotinchannel;
    });
-});
+]};
