@@ -1,6 +1,6 @@
 registerPlugin({
 	name: 'LimitIcone',
-	version: '1.0',
+	version: '1.1',
 	description: 'IconLimit',
 	author: 'Floflobel',
 	vars: {
@@ -19,7 +19,7 @@ registerPlugin({
 			]
 		}
 		message: {
-			title: 'Set the message for prevent',
+			title: 'Set the message when Server Groups is superior of the limit',
 			type: 'string',
 			placeholder: ""
 		}
