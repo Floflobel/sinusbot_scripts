@@ -53,7 +53,7 @@ registerPlugin({
 					}
 				}
 				
-				// count the number of real group without excludegroup
+				// Compte le nombre de groupe en enlevant les groupes exclus 
 				var count;
 				var countfinal = 0;
 				for (var h in srvgroups) {
@@ -61,13 +61,14 @@ registerPlugin({
 						if (srvgroups[h].i == arrayexcludegroups[i]) {
 							++countfinal;
 							srvgroupsfinalofexclude[countfinal-1] = arrayexcludegroups[i]
+							sinusbot.log('Exclude group ID : ' + srvgroupsfinalofexclude[i]);
 						}
 					}
 				}
 				count = countuser - countfinal	
 			}		
 			
-			// Message or poke with function of the group
+			// Message ou poke puis suppression d'un groupe  
 			if(count > config.limit) {	
 				if (config.optionmessage == 0) {
 				}
@@ -83,6 +84,7 @@ registerPlugin({
 					for(var t in srvgroups) {
 						if (srvgroups[g].i != srvgroupsfinalofexclude[t]) {
 							sinusbot.removeClientFromServerGroup(ev.client.dbid, srvgroups[g].i);
+							sinusbot.log(srvgroups[g].i);
 							return;
 						}
 					}
