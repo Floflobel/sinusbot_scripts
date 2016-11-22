@@ -31,21 +31,24 @@ registerPlugin({
 }, 	function(sinusbot, config) {
 		sinusbot.on('clientMove', function(ev) {
 			
-			var srvgroupsfinalofexclude = {};
-			
+
+
+			var srv_groupsfinalofexclude = {};
 			
 			if(ev.oldChannel == 0) {
-				// Compte le nombre de groupe que le joueur à 
-				var srvgroups = ev.clientServerGroups;
-				var countuser = 0;
-				for (var k in srvgroups) {
-					if (srvgroups.hasOwnProperty(k)) {
-						++countuser;
+				// Compte le nombre de groupe serveur que le joueur a
+				var srv_groups = ev.clientServerGroups;
+				var count_group_user = 0;
+				for (var k in srv_groups) {
+					if (srv_groups.hasOwnProperty(k)) {
+						++count_group_user;
 					}
 				}
 				
-				// compte le nombre de groupe à exclure 
-				var arrayexcludegroups = config.exclude_groups.split(',')
+				// Split les groupes à exclure 
+				var arrayexcludegroups = config.exclude_groups.split(',');
+				
+				// Compte le nombre de groupe à excluse
 				var countexclude = 0;
 				for(var j in arrayexcludegroups) {
 					if (arrayexcludegroups.hasOwnProperty(k)) {
@@ -56,19 +59,20 @@ registerPlugin({
 				// Compte le nombre de groupe en enlevant les groupes exclus 
 				var count;
 				var countfinal = 0;
-				for (var h in srvgroups) {
+				for (var h in srv_groups) {
 					for(i = 0; i <= countexclude; i++) {
-						if (srvgroups[h].i == arrayexcludegroups[i]) {
+						if (srv_groups[h].i == arrayexcludegroups[i]) {
 							++countfinal;
-							srvgroupsfinalofexclude[countfinal-1] = arrayexcludegroups[i]
-							sinusbot.log('Exclude group ID : ' + srvgroupsfinalofexclude[i]);
+							srv_groupsfinalofexclude[countfinal-1] = arrayexcludegroups[i]
+							//sinusbot.log('Exclude group ID : ' + srv_groupsfinalofexclude[i] + ' CountFinal : ' + countfinal);
 						}
 					}
 				}
-				count = countuser - countfinal	
+				count = count_group_user - countfinal
+				sinusbot.log('Count : ' + count);	
 			}		
 			
-			// Message ou poke puis suppression d'un groupe  
+			// Message ou poke puis suppression d'un groupe 
 			if(count > config.limit) {	
 				if (config.optionmessage == 0) {
 				}
@@ -80,11 +84,11 @@ registerPlugin({
 					sinusbot.poke(ev.clientId, message);
 				}
 				
-				for (var g in srvgroups) {
-					for(var t in srvgroups) {
-						if (srvgroups[g].i != srvgroupsfinalofexclude[t]) {
-							sinusbot.removeClientFromServerGroup(ev.client.dbid, srvgroups[g].i);
-							sinusbot.log(srvgroups[g].i);
+				for (var g in srv_groups) {
+					for(var t in srv_groups) {
+						if (srv_groups[g].i != srv_groupsfinalofexclude[t]) {
+							sinusbot.removeClientFromServerGroup(ev.client.dbid, srv_groups[g].i);
+							sinusbot.log(srv_groups[g].i);
 							return;
 						}
 					}
