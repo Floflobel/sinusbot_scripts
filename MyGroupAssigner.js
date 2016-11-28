@@ -36,9 +36,34 @@ registerPlugin({
 			var chatMessage = ev.msg;
 			var args = chatMessage.split(" ");
 			var groupexist = 'False';
+			var srvgroups = ev.clientServerGroups;
 			
 			if(ev.mode < 3 && args[1].length >= 1 && (args[0] == config.c_command || args[0] == config.d_command )) {
-				var srvgroups = ev.clientServerGroups;
+				
+				// Check the number of group with list of group may be affected
+				var a_groups_exclude = new Array();
+				a_groups_exclude = config.a_groups.split(',');
+				
+				var count_number_groups = 0;
+				for (var k in srvgroups) {
+					for (var j in a_groups_exclude)
+					
+						sinusbot.log('TMP : ' + a_groups_exclude[j]);
+						sinusbot.log('TMP2 : ' + srvgroups[j].i);
+					
+						if(srvgroups[k].i == a_groups_exclude[j]) {
+							++count_number_groups;	
+						}
+				}
+				
+				if(count_number_groups < config.e_limit) {
+					sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
+					return;
+				}
+				else {
+					sinusbot.log('Number of group : ' + count_number_groups);
+				}
+				
 				// Command for add group
 				if(config.c_command == args[0]) {
 					
