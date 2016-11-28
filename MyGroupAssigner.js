@@ -1,7 +1,7 @@
 registerPlugin({
 	name: 'MyGroupAssigner',
 	version: '1.0',
-	description: 'Adds a anyone group with bot',
+	description: 'Add group with command',
 	author: 'Floflobel',
 	vars: {
 		a_groups: {
@@ -20,6 +20,15 @@ registerPlugin({
 			title: 'The command, which should be used to remove the group.',
 			type: 'string'
 		}
+		e_limit: {
+			title: 'Limit the number of group'
+			type: 'number'
+			placeholder: '5'
+		}
+		f_permission: {
+			title: 'Comma Seperated List of Group IDs allow to assign group (if none, already assign group)'
+			type: 'string'
+		}
 	}
 }, 	function(sinusbot, config) {
 		sinusbot.on('chat', function(ev) {
@@ -30,18 +39,38 @@ registerPlugin({
 			
 			if(ev.mode < 3 && args[1].length >= 1 && (args[0] == config.c_command || args[0] == config.d_command )) {
 				var srvgroups = ev.clientServerGroups;
+				// Command for add group
 				if(config.c_command == args[0]) {
+					
+					var a_groups_split = config.a_groups.split(',');
+						
+					// Check if group is already assign 
 					for (var k in srvgroups) {
 						if (srvgroups[k].i == args[1]) {
 							sinusbot.log('already group assign');
 							return;
 						}
+						else {
+							sinusbot.log('continue..')
+						}
 					}
-					sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
-					sinusbot.log('test');
-					//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
-					return;
+					
+					// Check if group is allowed to assign
+					for (var j in a_groups_split) {
+						if (a_groups_split[j] == args[1]) {
+						
+							sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
+							sinusbot.log('test');
+							//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+							return;
+						}	
+						else {
+							sinusbot.log('group is not allowed to assign');
+							return;
+						}
+					}
 				}
+				// Command for remove group 
 				else if(config.d_command == args[0]) {					
 					for (var k in srvgroups) {
 						if (srvgroups[k].i == args[1]) {
@@ -59,7 +88,7 @@ registerPlugin({
 				}
 			}
 			else {
-				sinusbot.log('error');
+				sinusbot.log('error or not permission');
 				return;
 			}
 		});
