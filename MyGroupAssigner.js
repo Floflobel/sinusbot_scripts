@@ -36,10 +36,11 @@ registerPlugin({
 			var chatMessage = ev.msg;
 			var args = chatMessage.split(" ");
 			var groupexist = 'False';
-			var srvgroups = ev.clientServerGroups;
 			
 			if(ev.mode < 3 && args[1].length >= 1 && (args[0] == config.c_command || args[0] == config.d_command )) {
 				
+				var srvgroups = ev.clientServerGroups;
+	
 				// Check the number of group with list of group may be affected
 				var a_groups_exclude = new Array();
 				a_groups_exclude = config.a_groups.split(',');
@@ -54,18 +55,24 @@ registerPlugin({
 						}
 				}
 				
-				if(count_number_groups > config.e_limit) {
-					sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
-					return;
-				}
-				else {
-					sinusbot.log('Number of groups : ' + count_number_groups);
-				}
-				
 				// Command for add group
 				if(config.c_command == args[0]) {
 					
-					var a_groups_split = config.a_groups.split(',');
+					if(count_number_groups > config.e_limit) {
+						sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
+						return;
+					}
+					else {
+						sinusbot.log('Number of groups : ' + count_number_groups);
+					}
+
+					var a_groups_split = new Array();
+					a_groups_split = config.a_groups.split(',');
+
+					// TEST
+					for (var k in a_groups_split) {
+						sinusbot.log('a_groups_split : ' + a_groups_split[k]);
+					}
 						
 					// Check if group is already assign 
 					for (var k in srvgroups) {
@@ -80,7 +87,6 @@ registerPlugin({
 					
 					// Check if group is allowed to assign
 					for (var j in a_groups_split) {
-						sinusbot.log('a_groups_split : ' + a_groups_split[j]);
 						if (a_groups_split[j] == args[1]) {
 							sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
 							sinusbot.log('test');
@@ -89,7 +95,6 @@ registerPlugin({
 						}	
 						else {
 							sinusbot.log('group is not allowed to assign');
-							return;
 						}
 					}
 				}
