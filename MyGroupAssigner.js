@@ -48,20 +48,18 @@ registerPlugin({
 				for (var k in srvgroups) {
 					for (var j in a_groups_exclude)
 					
-						sinusbot.log('TMP : ' + a_groups_exclude[j]);
-						sinusbot.log('TMP2 : ' + srvgroups[j].i);
-					
+						// count the number of group	
 						if(srvgroups[k].i == a_groups_exclude[j]) {
 							++count_number_groups;	
 						}
 				}
 				
-				if(count_number_groups < config.e_limit) {
+				if(count_number_groups > config.e_limit) {
 					sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
 					return;
 				}
 				else {
-					sinusbot.log('Number of group : ' + count_number_groups);
+					sinusbot.log('Number of groups : ' + count_number_groups);
 				}
 				
 				// Command for add group
@@ -82,8 +80,8 @@ registerPlugin({
 					
 					// Check if group is allowed to assign
 					for (var j in a_groups_split) {
+						sinusbot.log('a_groups_split : ' + a_groups_split[j]);
 						if (a_groups_split[j] == args[1]) {
-						
 							sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
 							sinusbot.log('test');
 							//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
