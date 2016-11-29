@@ -68,11 +68,6 @@ registerPlugin({
 
 					var a_groups_split = new Array();
 					a_groups_split = config.a_groups.split(',');
-
-					// TEST
-					for (var k in a_groups_split) {
-						sinusbot.log('a_groups_split : ' + a_groups_split[k]);
-					}
 						
 					// Check if group is already assign 
 					for (var k in srvgroups) {
