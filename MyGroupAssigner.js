@@ -1,6 +1,6 @@
 registerPlugin({
 	name: 'MyGroupAssigner',
-	version: '1.0',
+	version: '0.9',
 	description: 'Add group with command',
 	author: 'Floflobel',
 	vars: {
@@ -9,7 +9,7 @@ registerPlugin({
 			type: 'string'
 		},
 		b_message: {
-			title: 'The message, which should be send, after the bot assigned the group. %n is the nickname of the Client.',
+			title: '[NOT WORK] The message, which should be send, after the bot assigned the group. %n is the nickname of the Client.',
 			type: 'multiline'
 		},
 		c_command: {
@@ -26,7 +26,7 @@ registerPlugin({
 			placeholder: '5'
 		}
 		f_permission: {
-			title: 'Comma Seperated List of Group IDs allow to assign group (if none, already assign group)'
+			title: '[NOT WORK] Comma Seperated List of Group IDs allow to assign group (if none, already assign group)'
 			type: 'string'
 		}
 	}
