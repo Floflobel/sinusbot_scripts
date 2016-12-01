@@ -57,39 +57,48 @@ registerPlugin({
 				
 				// Command for add group
 				if(config.c_command == args[0]) {
-					
-					if(count_number_groups > config.e_limit) {
-						sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
-						return;
-					}
-					else {
-						sinusbot.log('Number of groups : ' + count_number_groups);
-					}
 
-					var a_groups_split = new Array();
-					a_groups_split = config.a_groups.split(',');
-						
-					// Check if group is already assign 
-					for (var k in srvgroups) {
-						if (srvgroups[k].i == args[1]) {
-							sinusbot.log('already group assign');
-							return;
-						}
-						else {
-							sinusbot.log('continue..')
-						}
-					}
+					for (var k in f_permission_split) {
+						if (srvgroups[k].i == f_permission_split[k])
+						{
+							sinusbot.log('You have a permission for execute this command')
+
 					
-					// Check if group is allowed to assign
-					for (var j in a_groups_split) {
-						if (a_groups_split[j] == args[1]) {
-							sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
-							sinusbot.log('test');
-							//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+							if(count_number_groups > config.e_limit) {
+								sinusbot.log('You have the maximum of the group, please remove group with command : ' + config.d_command);
+								return;
+							}
+							else {
+								sinusbot.log('Number of groups : ' + count_number_groups);
+							}
+
+							var a_groups_split = new Array();
+							a_groups_split = config.a_groups.split(',');
+								
+							// Check if group is already assign 
+							for (var k in srvgroups) {
+								if (srvgroups[k].i == args[1]) {
+									sinusbot.log('already group assign');
+									return;
+								}
+								else {
+									sinusbot.log('continue..')
+								}
+							}
+							
+							// Check if group is allowed to assign
+							for (var j in a_groups_split) {
+								if (a_groups_split[j] == args[1]) {
+									sinusbot.addClientToServerGroup(ev.client.dbid, args[1]);
+									sinusbot.log('test');
+									//sinusbot.poke(ev.clientId, config.b_message.replace(/%n/g, ev.clientNick));
+									return;
+								}	
+								else {
+									sinusbot.log('group is not allowed to assign');
+								}
+							}
 							return;
-						}	
-						else {
-							sinusbot.log('group is not allowed to assign');
 						}
 					}
 				}
