@@ -1,34 +1,28 @@
 registerPlugin({
     name: 'Back To Default',
-    version: '1.1',
+    version: '1.2',
     description: 'If everyone leaves the current channel, the bot will move back to its default channel',
-    author: 'XoXFaby <xoxfaby@gmail.com>, Floflobel',
+    author: 'Floflobel',
     vars: {
         defaultChannel: {
             title: 'Default channel to return to',
             type: 'channel'
         }
-		couldown: {
-			title: 'Set the time to the bot are move (milliseconds)',
-			type: 'number',
-			placeholder: "60"
-		}
-		excludebot: {
-			title: 'Select option for exclude bot',
-			type: 'select',
-			options: [
-				'Server Group ID',
-				'Identity',
-			]
-		}
-		servergroupid: {
-			title: 'Insert the Server Group ID of your bot (if selected)'
-			type: 'number'
-		}
-		uidbot: {
-			title: 'Insert the UID of your bot (if selected)'
-			type: 'string'
-		}
+	couldown: {
+		title: 'Set the time to the bot are move (milliseconds)',
+		type: 'number',
+		placeholder: "60"
+	}
+	whenmove: {
+		title: 'Option when the bot is move to the default channel'
+		type: 'select',
+                        options: [
+                                'None',
+                                'Playback stopped',
+                        ]
+
+		
+	}
     }
 }, function(sinusbot, config) {
     if (!config.defaultChannel) {
@@ -37,20 +31,9 @@ registerPlugin({
     }
 
     sinusbot.on('clientCount', function(ev) {
-		var numberofbotinchannel = 0;
-		for(i=0; i<ev.count; i++) {
-	        sinusbot.log(sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']);
-			var uiduserinchannel = sinusbot.getChannel(sinusbot.getCurrentChannelId())['clients'][i]['uid']
-			if (uiduserinchannel = config.uidbot) { 
-					numberofbotinchannel++;
-			}
-		}
-
-		sinusbot.log(numberofbotinchannel);
-
-        if (ev.count <= 1) {
+        if (ev.count <= 1 ) {
 			if (!config.couldown || config.couldown == 0) {
-				sinusbot.log('Returning to default channel ');
+				sinusbot.log('Returning to default channel');
 				join(config.defaultChannel);
 				return;
 			}
@@ -61,14 +44,19 @@ registerPlugin({
 				
 				setTimeout(function() {
 					var numberusers = sinusbot.getChannel(getCurrentChannelId()).clients;
-	                var countnumberusers = 0;
-					for (var k in numberusers) {
-							++countnumberusers;
-					}
+	                                var countnumberusers = 0;
+                	                for (var k in numberusers) {
+                                        	++countnumberusers;
+                                	}
 
 					if (countnumberusers <= 1)
 					{
-						sinusbot.log('test2 : ' + ev.count)
+						if (config.whenmove == 0) {
+		                                }
+                		                else if (config.whenmove == 1) {
+							stop()
+                                		}
+						sinusbot.log('Returning to default channel')
 						join(config.defaultChannel);
 						return;
 					}
