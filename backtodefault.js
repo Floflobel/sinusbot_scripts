@@ -8,11 +8,21 @@ registerPlugin({
             title: 'Default channel to return to',
             type: 'channel'
         }
-		couldown: {
-			title: 'Set the time to the bot are move (milliseconds)',
-			type: 'number',
-			placeholder: "60"
-		}
+	couldown: {
+		title: 'Set the time to the bot are move (milliseconds)',
+		type: 'number',
+		placeholder: "60"
+	}
+	whenmove: {
+		title: 'Option when the bot is move to the default channel'
+		type: 'select',
+                        options: [
+                                'None',
+                                'Playback stopped',
+                        ]
+
+		
+	}
     }
 }, function(sinusbot, config) {
     if (!config.defaultChannel) {
