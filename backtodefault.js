@@ -33,7 +33,7 @@ registerPlugin({
     sinusbot.on('clientCount', function(ev) {
         if (ev.count <= 1 ) {
 			if (!config.couldown || config.couldown == 0) {
-				sinusbot.log('Returning to default channel ');
+				sinusbot.log('Returning to default channel');
 				join(config.defaultChannel);
 				return;
 			}
@@ -51,7 +51,12 @@ registerPlugin({
 
 					if (countnumberusers <= 1)
 					{
-						sinusbot.log('test2 : ' + ev.count)
+						if (config.whenmove == 0) {
+		                                }
+                		                else if (config.whenmove: == 1) {
+							stop()
+                                		}
+						sinusbot.log('Returning to default channel')
 						join(config.defaultChannel);
 						return;
 					}
