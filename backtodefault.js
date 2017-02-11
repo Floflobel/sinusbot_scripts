@@ -53,7 +53,7 @@ registerPlugin({
 					{
 						if (config.whenmove == 0) {
 		                                }
-                		                else if (config.whenmove: == 1) {
+                		                else if (config.whenmove == 1) {
 							stop()
                                 		}
 						sinusbot.log('Returning to default channel')
