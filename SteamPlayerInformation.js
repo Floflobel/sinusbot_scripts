@@ -120,6 +120,7 @@ registerPlugin({
 			}
 		}	
 	});
+
 	
 	event.on('chat', function(ev){
 		if (ev.client.isSelf()) {
