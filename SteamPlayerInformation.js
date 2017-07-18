@@ -111,8 +111,12 @@ registerPlugin({
 
 	function check_game(client) {
 		//queryData(client)
-		var processData = queryData(client);
-		client.chat(processData.response.player[0].personaname);
+		queryData(client, function(info) {
+			// "info" here is now the serverInformation
+			engine.log(info.response.player.personaname);
+			client.chat(info);
+		});
+		//client.chat(processData.response.player[0].personaname);
 		//var pseudo = queryData().response.players[0].personaname;
 		//var ingame = queryData().response.players[0].gameextrainfo; // undefined
 		//if (ingame == "H1Z1: King of the Kill") {
@@ -125,7 +129,7 @@ registerPlugin({
 	}
 
 	
-	function queryData(client) {
+	function queryData(client, callback) {
 		sinusbot.http({
 		  "method": "GET",
 		  "url":    'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + config.apiKey + '&steamids=' + clientsteamid,
@@ -134,22 +138,25 @@ registerPlugin({
 			{"Content-Type": "application/json"}
 		  ]
 		}, function (error, response) {
-			if (typeof response != 'undefined' && response.statusCode == 200) {
-				var serverInformation = JSON.parse(response.data);
-				if (typeof serverInformation != 'undefined') { 
-					if (typeof serverInformation.error != 'undefined') {
-						engine.log("API Error: " + serverInformation.error);
-					}
-					//processData(serverInformation);
-					client.chat("1: " + serverInformation);
-					client.chat("2: " + serverInformation.response.player[0].personaname);
-					return serverInformation;
-				} else {
-			  engine.log("ERROR: invalid response: " + response.data);
+			if (error) return engine.log("API Error: " + error);
+			if (response.statusCode == 200) {
+		        	try {
+					var serverInformation = JSON.parse(response.data);
+				} catch(e) {
+					return engine.log("ERROR: invalid response: " + response.data);
+		        	}
+		        	if (typeof serverInformation.error != 'undefined') {
+			            engine.log("API Error: " + serverInformation.error);
+			        }
+                
+			        //engine.log("1: " + serverInformation);
+			        //engine.log("2: " + serverInformation.response.player[0].personaname);
+			        callback(serverInformation);
 			}
-		  }
+		  
 		});
 	}
+
 	
 });
 
