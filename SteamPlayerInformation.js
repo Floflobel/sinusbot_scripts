@@ -124,49 +124,6 @@ registerPlugin({
 		//}
 	}
 
-
-        function TwitchSpecialEmotesResp(name) {
-                sinusbot.http({
-                        "method": "GET", 
-                        "url":"https://api.twitch.tv/kraken/chat/"+name+"/emoticons" + "?response_type=token&client_id=" + config.twitch_apikey, 
-                        "timeout": 60000, 
-                        "headers":[{"Content-Type": "application/json","Client-ID": config.twitch_apikey}, {"Accept":"application/vnd.twitchtv.v3+json"}]
-                }, function (error, response) {
-                        if (response.statusCode != 200) {
-                                sinusbot.log(error);
-                                return;
-                        }
-                        
-                        var data = JSON.parse(response.data);
-                        subemotes = 'no SUB emotes';
-                        var emotes = '';
-                        for (var i = 0; i < data.emoticons.length; i++) {
-                                if (data.emoticons[i].subscriber_only == true) {
-                                        emotes = emotes + '\n[img]'+data.emoticons[i].url+'[/img] '+data.emoticons[i].regex;
-                                }
-                        }
-                        if (emotes != '') {
-                                subemotes = emotes;
-                        }
-                        
-                        key = sinusbot.getVar(name);
-                        
-                        sinusbot.setVar(name, {
-                                lastState: key.lastState,
-                                SpecialInfo: parseInt(key.SpecialInfo),
-                                mode: parseInt(key.mode),
-                                channelId: parseInt(key.channelId),
-                                OfflineText: key.OfflineText,
-                                OnlineText: key.OnlineText,
-                                description: key.description,
-                                descriptionsetet: key.descriptionsetet,
-                                imgshow: key.imgshow,
-                                subemotes: subemotes,
-                                Betteremotes: key.Betteremotes
-                        });
-                });
-        }
-
 	
 	function queryData(client) {
 		sinusbot.http({
@@ -184,7 +141,7 @@ registerPlugin({
 						engine.log("API Error: " + serverInformation.error);
 					}
 					//processData(serverInformation);
-/					client.chat("1: " + serverInformation);
+					client.chat("1: " + serverInformation);
 					client.chat("2: " + serverInformation.response.player[0].personaname);
 					return serverInformation;
 				} else {
