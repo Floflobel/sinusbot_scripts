@@ -141,8 +141,8 @@ registerPlugin({
 						engine.log("API Error: " + serverInformation.error);
 					}
 					//processData(serverInformation);
-					engine.log("1: " + serverInformation);
-					engine.log("2: " + serverInformation.response.player[0].personaname);
+					client.chat("1: " + serverInformation);
+					client.chat("2: " + serverInformation.response.player[0].personaname);
 					return serverInformation;
 				} else {
 			  engine.log("ERROR: invalid response: " + response.data);
@@ -152,3 +152,4 @@ registerPlugin({
 	}
 	
 });
+
