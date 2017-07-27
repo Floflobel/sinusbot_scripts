@@ -63,7 +63,7 @@ registerPlugin({
     }
 	
 	function processData(serverInformation){
-		var duos1 = serverInformation.h1z1xx.Europe.['Duos 1 (EU)'].status;
+		var duos1 = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["status"];
 		
 		engine.log(duos1);
     }
