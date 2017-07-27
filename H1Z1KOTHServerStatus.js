@@ -25,12 +25,7 @@ registerPlugin({
 				},
 			]
 		},
-		{
-			name: 'apiKey',
-			title: 'Your personal API Key - check the installation instructions if you dont know how to get one',
-			type: 'string'
-		}, 
-		{
+		interval {
 			name: 'interval',
 			title: 'Update Interval in minutes',
 			//indent: 2,
