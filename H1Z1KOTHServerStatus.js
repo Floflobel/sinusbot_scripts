@@ -121,11 +121,16 @@ registerPlugin({
 	
 	function processData(sinusbot, serverInformation){
 		for (var i in nameGame) {
+			engine.log("==== BEGIN NAME SET ====");
 			var channel = backend.getChannelByID(config[nameGame[i]]);
+			engine.log(config[nameGame[i]);
 			engine.log(channel);
 			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
+			engine.log(query);
 			var name = nameGame[i] + " (EU)" + " > " + query;
+			engine.log(name);
 			channel.setName(name);
+			engine.log("==== NAME SET ====");
 		}
     }
 
