@@ -83,7 +83,7 @@ registerPlugin({
 		for (var nameofGame in nameGame) {
 			var channel = config.nameofGame;
 			var query = serverInformation.h1z1xx.Europe[nameofGame + " (EU)"]["status"];
-			channel.setName(nameofGame + );
+			channel.setName(nameofGame + " (EU)" + " > " + query);
 		}
 		
 		
