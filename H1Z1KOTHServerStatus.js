@@ -81,7 +81,7 @@ registerPlugin({
 	function processData(serverInformation){
 		
 		engine.log(["config.Solo 1"]);
-		//engine.log(config.Solo 1);
+		engine.log([config.Solo 1]);
 		
 		
 		for (var i in nameGame) {
