@@ -12,17 +12,17 @@ registerPlugin({
 					name: 'Solo 1',
 					indent: 1,
 					type: 'channel',
-				}
+				},
 				{
 					name: 'Solo 2',
 					indent: 1,
 					type: 'channel',
-				}
+				},
 				{
 					name: 'Solo 3',
 					indent: 1,
 					type: 'channel',
-				}
+				},
 			]
 		},
 		{
