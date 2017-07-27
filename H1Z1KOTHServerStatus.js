@@ -78,7 +78,8 @@ registerPlugin({
 								//codecQuality: parseInt(parseInt(ChannelQuality) + 1), 
 								maxClients: '0', 
 								//description: ChannelDescription, 
-								//neededTalkPower: parseInt(ChannelTalkPower)});
+								//neededTalkPower: parseInt(ChannelTalkPower)
+								});
 		
 		engine.log(duos1_status);
 		engine.log(duos1_live);
