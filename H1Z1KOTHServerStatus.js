@@ -48,20 +48,20 @@ registerPlugin({
 			type: 'channel',
 		},
 		{
-			name: 'Five 1',
-			title: 'Five 1',
+			name: 'Fives 1',
+			title: 'Fives 1',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Five 2',
-			title: 'Five 2',
+			name: 'Fives 2',
+			title: 'Fives 2',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Five 3',
-			title: 'Five 3',
+			name: 'Fives 3',
+			title: 'Fives 3',
 			indent: 2,
 			type: 'channel',
 		},
@@ -79,7 +79,7 @@ registerPlugin({
     var backend = require('backend');
     var engine = require('engine');
 	
-	var nameGame = ['Solo 1', 'Solo 2', 'Solo 3', 'Duos 1', 'Duos 2', 'Duos 3', 'Five 1', 'Five 2', 'Five 3', 'Training'];
+	var nameGame = ['Solo 1', 'Solo 2', 'Solo 3', 'Duos 1', 'Duos 2', 'Duos 3', 'Fives 1', 'Fives 2', 'Fives 3', 'Training'];
 	//var nameGame = ['Solo 1', 'Solo 2', 'Solo 3'];
 	
 	interval = config.interval * 60000;
