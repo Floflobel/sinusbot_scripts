@@ -80,11 +80,11 @@ registerPlugin({
 	
 	function processData(serverInformation){
 		
-		for (var nameofGame in nameGame) {
-			var channel = config.nameofGame;
-			engine.log("nameofGame: " + nameofGame);
-			var query = serverInformation.h1z1xx.Europe[nameofGame + " (EU)"]["status"];
-			channel.setName(nameofGame + " (EU)" + " > " + query);
+		for (var i in nameGame) {
+			var channel = config.nameofGame[i];
+			engine.log("nameofGame: " + nameofGame[i]);
+			var query = serverInformation.h1z1xx.Europe[nameofGame[i] + " (EU)"]["status"];
+			channel.setName(nameofGame[i] + " (EU)" + " > " + query);
 		}
 		
 		
