@@ -12,19 +12,19 @@ registerPlugin({
 			placeholder: 5
 		},
 		{
-			name: 'Solo 1',
+			name: 'Solo1',
 			title: 'Solo 1',
 			//indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Solo 2',
+			name: 'Solo2',
 			title: 'Solo 2',
 			//indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Solo 3',
+			name: 'Solo3',
 			title: 'Solo 3',
 			//indent: 2,
 			type: 'channel',
@@ -81,7 +81,10 @@ registerPlugin({
 	function processData(serverInformation){
 		
 		engine.log(["config.Solo 1"]);
-		engine.log([config.Solo 1]);
+		engine.log(['config.Solo 1']);
+		
+		engine.log(config['Solo 1']);
+		engine.log(config["Solo 1"]);
 		
 		
 		for (var i in nameGame) {
