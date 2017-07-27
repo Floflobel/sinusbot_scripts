@@ -70,7 +70,7 @@ registerPlugin({
                     if (typeof serverInformation.error != 'undefined') {
                         engine.log("API Error: " + serverInformation.error);
                     }
-                    processData(serverInformation);
+                    processData(sinusbot, serverInformation);
                 } else {
               engine.log("ERROR: invalid response: " + response.data);
             }
@@ -78,7 +78,7 @@ registerPlugin({
         });
     }
 	
-	function processData(serverInformation){
+	function processData(sinusbot, serverInformation){
 		
 		engine.log(["config.Solo 1"]);
 		engine.log(['config.Solo 1']);
