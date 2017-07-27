@@ -12,27 +12,21 @@ registerPlugin({
 			placeholder: 5
 		},
 		{
-			name: 'Channels',
-			title: 'Channels',
-			type: 'array',
-			var: [
-				{
-					name: 'Solo 1',
-					indent: 2,
-					type: 'channel',
-				},
-				{
-					name: 'Solo 2',
-					indent: 2,
-					type: 'channel',
-				},
-				{
-					name: 'Solo 3',
-					indent: 2,
-					type: 'channel',
-				},
-			]
+			name: 'Solo 1',
+			indent: 2,
+			type: 'channel',
 		},
+		{
+			name: 'Solo 2',
+			indent: 2,
+			type: 'channel',
+		},
+		{
+			name: 'Solo 3',
+			indent: 2,
+			type: 'channel',
+		},
+
 	]
    
 }, function(sinusbot, config) {
