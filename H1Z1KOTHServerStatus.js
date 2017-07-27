@@ -3,17 +3,18 @@ registerPlugin({
 	version: '1.0.0',
 	description: 'Shows information about most steam player on a channel description or via privat chat.',
 	author: 'Floflobel',
-	vars: {
+	vars: [
 		{
-			name: 'interval'
-			title: 'Update Interval in minutes'
+			name: 'interval',
+			title: 'Update Interval in minutes',
 			//indent: 2
-			type: 'number'
+			type: 'number',
 			placeholder: 5
 		},
-		Channels: {
-			title: 'Channels'
-			type: 'array'
+		{
+			name: 'Channels',
+			title: 'Channels',
+			type: 'array',
 			var: [
 				{
 					name: 'Solo 1',
@@ -32,7 +33,7 @@ registerPlugin({
 				},
 			]
 		},
-	}
+	]
    
 }, function(sinusbot, config) {
 	var event = require('event');
