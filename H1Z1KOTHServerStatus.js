@@ -25,7 +25,7 @@ registerPlugin({
 				},
 			]
 		},
-		interval {
+		Interval: {
 			name: 'interval',
 			title: 'Update Interval in minutes',
 			//indent: 2,
