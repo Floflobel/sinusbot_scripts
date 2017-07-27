@@ -95,7 +95,11 @@ registerPlugin({
 			
 			engine.log(query);
 			
-			channel.setName(nameGame[i] + " (EU)" + " > " + query);
+			var name = nameGame[i] + " (EU)" + " > " + query;
+			
+			engine.log(name);
+			
+			channel.setName(name);
 		}
 		
 		
