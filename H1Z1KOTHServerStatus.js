@@ -92,6 +92,9 @@ registerPlugin({
 			
 			var channel = backend.getChannelByID(config[nameGame[i]]);
 			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
+			
+			engine.log(query);
+			
 			channel.setName(nameGame[i] + " (EU)" + " > " + query);
 		}
 		
