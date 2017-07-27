@@ -12,10 +12,14 @@ registerPlugin({
 		{
 			name: 'interval',
 			title: 'Update Interval in minutes',
-			indent: 2,
+			//indent: 2,
 			type: 'number',
 			placeholder: 5
 		},
+		{
+			name: 'Channel'
+			type: 'channel'
+		}
 	]
    
 }, function(sinusbot, config) {
@@ -63,9 +67,21 @@ registerPlugin({
     }
 	
 	function processData(serverInformation){
-		var duos1 = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["status"];
 		
-		engine.log(duos1);
+		var duos1_status = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["status"];
+		var duos1_live = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["ageSeconds"];
+		
+		backend.createChannel({ name: 'Duos 1 (EU) > ' + duos1_status + ' > ' + duos1_live + 's', 
+								parent: config.Channel, 
+								permanent: true, 
+								//codec: parseInt(ChannelCodec), 
+								//codecQuality: parseInt(parseInt(ChannelQuality) + 1), 
+								maxClients: '0', 
+								//description: ChannelDescription, 
+								//neededTalkPower: parseInt(ChannelTalkPower)});
+		
+		engine.log(duos1_status);
+		engine.log(duos1_live);
     }
 
 });
