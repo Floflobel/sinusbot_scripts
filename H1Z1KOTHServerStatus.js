@@ -90,7 +90,7 @@ registerPlugin({
 		for (var i in nameGame) {
 			engine.log("nameGame: " + nameGame[i]);
 			
-			var channel = config[nameGame[i]];
+			var channel = backend.getChannelByID(config[nameGame[i]]);
 			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
 			channel.setName(nameGame[i] + " (EU)" + " > " + query);
 		}
