@@ -16,9 +16,26 @@ registerPlugin({
 			type: 'number',
 			placeholder: 5
 		},
-		{
-			name: 'Channel'
-			type: 'channel'
+		Channels {
+			title: 'Channels'
+			type: 'array'
+			var: [
+				{
+					name: 'Solo 1',
+					indent: 1,
+					type: 'channel',
+				}
+				{
+					name: 'Solo 2',
+					indent: 1,
+					type: 'channel',
+				}
+				{
+					name: 'Solo 3',
+					indent: 1,
+					type: 'channel',
+				}
+			]
 		}
 	]
    
@@ -28,6 +45,7 @@ registerPlugin({
     var backend = require('backend');
     var engine = require('engine');
 	
+	var nameGame = ['Solo 1', 'Solo 2', 'Solo 3', 'Duos 1', 'Duos 2', 'Duos 3', 'Five 1', 'Five 2', 'Five 3', 'Training'];
 	
 	interval = config.interval * 60000;
     if (interval < 60000) {
@@ -68,6 +86,12 @@ registerPlugin({
 	
 	function processData(serverInformation){
 		
+		for (var nameofGame in nameGame) {
+			
+		}
+		
+		
+		
 		var duos1_status = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["status"];
 		var duos1_live = serverInformation.h1z1xx.Europe["Duos 1 (EU)"]["ageSeconds"];
 		
@@ -76,7 +100,7 @@ registerPlugin({
 								permanent: true, 
 								//codec: parseInt(ChannelCodec), 
 								//codecQuality: parseInt(parseInt(ChannelQuality) + 1), 
-								maxClients: '0', 
+								maxClients: 0, 
 								//description: ChannelDescription, 
 								//neededTalkPower: parseInt(ChannelTalkPower)
 								});
