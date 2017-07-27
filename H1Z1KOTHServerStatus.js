@@ -12,55 +12,55 @@ registerPlugin({
 			placeholder: 5
 		},
 		{
-			name: 'Solo1',
+			name: 'Solo 1',
 			title: 'Solo 1',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Solo2',
+			name: 'Solo 2',
 			title: 'Solo 2',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Solo3',
+			name: 'Solo 3',
 			title: 'Solo 3',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Duo1',
+			name: 'Duo 1',
 			title: 'Duo 1',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Duo2',
+			name: 'Duo 2',
 			title: 'Duo 2',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Duo3',
+			name: 'Duo 3',
 			title: 'Duo 3',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Five1',
+			name: 'Five 1',
 			title: 'Five 1',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Five2',
+			name: 'Five 2',
 			title: 'Five 2',
 			indent: 2,
 			type: 'channel',
 		},
 		{
-			name: 'Five3',
+			name: 'Five 3',
 			title: 'Five 3',
 			indent: 2,
 			type: 'channel',
@@ -121,6 +121,7 @@ registerPlugin({
 	
 	function processData(sinusbot, serverInformation){
 		for (var i in nameGame) {
+			sinusbot.engine('Channel ID: ' + config[nameGame[i]);
 			var channel = backend.getChannelByID(config[nameGame[i]]);
 			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
 			var name = nameGame[i] + " (EU)" + " > " + query;
