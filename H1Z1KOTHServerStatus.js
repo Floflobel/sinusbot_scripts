@@ -79,7 +79,7 @@ registerPlugin({
     }
 	
 	function processData(sinusbot, serverInformation){
-		var channel = backend.getChannelByID(132);
+		var channel = backend.getChannelByID('132');
 		channel.setName('patate');
 		
 		// for (var i in nameGame) {
