@@ -39,7 +39,7 @@ registerPlugin({
     var engine = require('engine');
 	
 	//var nameGame = ['Solo 1', 'Solo 2', 'Solo 3', 'Duos 1', 'Duos 2', 'Duos 3', 'Five 1', 'Five 2', 'Five 3', 'Training'];
-	var nameGame = ['Solo 1'];
+	var nameGame = ['Solo 1', 'Solo 2', 'Solo 3'];
 	
 	interval = config.interval * 60000;
     if (interval < 60000) {
@@ -81,10 +81,11 @@ registerPlugin({
 	function processData(serverInformation){
 		
 		for (var i in nameGame) {
-			var channel = config.nameofGame[i];
-			engine.log("nameofGame: " + nameofGame[i]);
-			var query = serverInformation.h1z1xx.Europe[nameofGame[i] + " (EU)"]["status"];
-			channel.setName(nameofGame[i] + " (EU)" + " > " + query);
+			engine.log("nameGame: " + nameGame[i]);
+			
+			var channel = config.nameGame[i];
+			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
+			channel.setName(nameGame[i] + " (EU)" + " > " + query);
 		}
 		
 		
