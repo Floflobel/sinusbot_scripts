@@ -4,6 +4,13 @@ registerPlugin({
 	description: 'Shows information about most steam player on a channel description or via privat chat.',
 	author: 'Floflobel',
 	vars: {
+		{
+			name: 'interval',
+			title: 'Update Interval in minutes',
+			//indent: 2,
+			type: 'number',
+			placeholder: 5
+		},
 		Channels: {
 			title: 'Channels'
 			type: 'array'
@@ -24,13 +31,6 @@ registerPlugin({
 					type: 'channel',
 				},
 			]
-		},
-		{
-			name: 'interval',
-			title: 'Update Interval in minutes',
-			//indent: 2,
-			type: 'number',
-			placeholder: 5
 		},
 	}
    
