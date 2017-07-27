@@ -5,10 +5,10 @@ registerPlugin({
 	author: 'Floflobel',
 	vars: {
 		{
-			name: 'interval',
-			title: 'Update Interval in minutes',
-			//indent: 2,
-			type: 'number',
+			name: 'interval'
+			title: 'Update Interval in minutes'
+			//indent: 2
+			type: 'number'
 			placeholder: 5
 		},
 		Channels: {
