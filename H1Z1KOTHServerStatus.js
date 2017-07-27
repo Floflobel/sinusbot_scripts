@@ -79,15 +79,15 @@ registerPlugin({
     }
 	
 	function processData(sinusbot, serverInformation){
-		var channel = backend.getChannelByID('132');
-		channel.setName('patate');
+		// var channel = backend.getChannelByID('132');
+		// channel.setName('patate');
 		
-		// for (var i in nameGame) {
-			// var channel = backend.getChannelByID(config[nameGame[i]]);
-			// var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
-			// var name = nameGame[i] + " (EU)" + " > " + query;
-			// channel.setName(name);
-		// }
+		for (var i in nameGame) {
+			var channel = backend.getChannelByID(config[nameGame[i]]);
+			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
+			var name = nameGame[i] + " (EU)" + " > " + query;
+			channel.setName(name);
+		}
 		
 		
 		
