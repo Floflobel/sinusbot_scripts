@@ -3,19 +3,7 @@ registerPlugin({
 	version: '1.0.0',
 	description: 'Shows information about most steam player on a channel description or via privat chat.',
 	author: 'Floflobel',
-	vars: [
-		{
-			name: 'apiKey',
-			title: 'Your personal API Key - check the installation instructions if you dont know how to get one',
-			type: 'string'
-		}, 
-		{
-			name: 'interval',
-			title: 'Update Interval in minutes',
-			//indent: 2,
-			type: 'number',
-			placeholder: 5
-		},
+	vars: {
 		Channels {
 			title: 'Channels'
 			type: 'array'
@@ -36,8 +24,20 @@ registerPlugin({
 					type: 'channel',
 				}
 			]
-		}
-	]
+		},
+		{
+			name: 'apiKey',
+			title: 'Your personal API Key - check the installation instructions if you dont know how to get one',
+			type: 'string'
+		}, 
+		{
+			name: 'interval',
+			title: 'Update Interval in minutes',
+			//indent: 2,
+			type: 'number',
+			placeholder: 5
+		},
+	}
    
 }, function(sinusbot, config) {
 	var event = require('event');
