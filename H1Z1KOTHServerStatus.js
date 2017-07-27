@@ -122,7 +122,7 @@ registerPlugin({
 	function processData(sinusbot, serverInformation){
 		for (var i in nameGame) {
 			var channel = backend.getChannelByID(config[nameGame[i]]);
-			sinusbot.engine(channel);
+			engine.log(channel);
 			var query = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
 			var name = nameGame[i] + " (EU)" + " > " + query;
 			channel.setName(name);
