@@ -4,7 +4,7 @@ registerPlugin({
 	description: 'Shows information about most steam player on a channel description or via privat chat.',
 	author: 'Floflobel',
 	vars: {
-		Channels {
+		Channels: {
 			title: 'Channels'
 			type: 'array'
 			var: [
