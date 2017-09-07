@@ -76,22 +76,16 @@ registerPlugin({
 }, function(sinusbot, config) {
 	var event = require('event');
 	var store = require('store');
-    var backend = require('backend');
-    var engine = require('engine');
+	var backend = require('backend');
+	var engine = require('engine');
 	
 	var nameGame = ['Solo 1', 'Solo 2', 'Solo 3', 'Duos 1', 'Duos 2', 'Duos 3', 'Fives 1', 'Fives 2', 'Fives 3', 'Training'];
 	//var nameGame = ['Solo 1', 'Solo 2', 'Solo 3'];
 	
 	interval = config.interval * 60000;
-    if (interval < 60000) {
-        interval = 60000;
-    }
-	
-	// if (!(config.apiKey)){
-        // engine.log('No API key found - stop script execution!');
-        // return;
-    // }
-	
+	if (interval < 60000) {
+        	interval = 60000;
+	}
 
 	queryData()
 	setInterval(queryData, interval);
@@ -123,11 +117,9 @@ registerPlugin({
 		for (var i in nameGame) {
 			var channel = backend.getChannelByID(config[nameGame[i]]);
 			var query_status = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
-			//var query_ageSeconds = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["ageSeconds"];
-			//var name = nameGame[i] + " (EU)" + " > " + query_status + " > " + query_ageSeconds + "s";
 			var name = nameGame[i] + " (EU)" + " > " + query_status;
 			channel.setName(name);
 		}
-    }
+    	}
 
 });
