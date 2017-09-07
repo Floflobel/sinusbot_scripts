@@ -30,17 +30,14 @@ registerPlugin({
 	var backend = require('backend');
 	var engine = require('engine');
 	
-	//interval = config.interval * 60000;
-	//if (interval < 60000) {
-        //	interval = 60000;
-	//}
-
-	//queryData()
-	//setInterval(queryData, interval);
-	
 	event.on('clientMove', function(ev) {
-		if (config.eventGroups.length == undefined) {
+		if (!config.eventGroups.length) {
 			engine.log("Please define channel where is name change");
+			return;
+		}
+		if (!config.suffix) {
+			engine.log("Please define a suffix");
+			return;
 		}
 
 		for(var i = 0; i < config.eventGroups.length; i++){
@@ -54,8 +51,5 @@ registerPlugin({
 			}
 		}
 
-
-//		if (ev.toChannel.getClientCount() => ev.toChannel.maxClients() && currentConfig.)
-//		engine.log('Maxclient: ' + ev.toChannel.maxClients() + ' - Currentclient: ' + ev.toChannel.getClientCount());
 	});
 });
