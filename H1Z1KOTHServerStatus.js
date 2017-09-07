@@ -1,7 +1,7 @@
 registerPlugin({
 	name: 'H1Z1 KOTH Server Information',
-	version: '1.0.0',
-	description: 'Shows information about most steam player on a channel description or via privat chat.',
+	version: '1.0.1',
+	description: 'Show server status of H1Z1 KOTH in Europe',
 	author: 'Floflobel',
 	vars: [
 		{
@@ -118,7 +118,9 @@ registerPlugin({
 			var channel = backend.getChannelByID(config[nameGame[i]]);
 			var query_status = serverInformation.h1z1xx.Europe[nameGame[i] + " (EU)"]["status"];
 			var name = nameGame[i] + " (EU)" + " > " + query_status;
-			channel.setName(name);
+			if (backend.isConnected) {
+				channel.setName(name);
+			}
 		}
     	}
 
