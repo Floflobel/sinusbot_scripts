@@ -16,7 +16,9 @@ registerPlugin({
 			var command = "!reload"
 			if (ev.text.indexOf("!reload") == 0) {
 				//store.set(ev.client.uid(), ev.text.split(" ").pop());
-				ev.client.chat("Reloads all scripts");
+				ev.client.chat("Reloads all scripts !");
+				reloadScripts();
+				ev.client.chat("Reloads all scripts are done");
 			}
         	}	
 	});
