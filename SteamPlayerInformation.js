@@ -61,9 +61,6 @@ registerPlugin({
 
 	event.on('clientMove', function(ev) {
 		initial_check_steamid(ev.client);
-		if(ev.fromChannel == null && ev.toChannel.isDefault()) {
-			initial_check_steamid(ev.client);
-		}
 	});
 	
 	event.on('chat', function(ev){
@@ -83,91 +80,93 @@ registerPlugin({
 		clientsteamid = store.get(client.uid());
 		if (clientsteamid == undefined || clientsteamid == "undefined") {
 
+		if(ev.fromChannel == null && ev.toChannel.isDefault()) {
 			client.chat(config.initialtext);
-			removeToServerGroup(client, '20');
-			return;
 		}
-		else {
-			addToServerGroup(client, '20');
-			queryData(client);
-		}
-
+		removeToServerGroup(client, '20');
+		return;
 	}
-		
+	else {
+		addToServerGroup(client, '20');
+		queryData(client);
+	}
 
-	function queryData(client) {
-		clientsteamid = store.get(client.uid());
-		if (clientsteamid == undefined) {
-			engine.log("Steamid undefined")
-			return;
-		}
+}
+	
 
-		engine.log('Name: ' + client.name() + ' - UID: ' + client.uid());
+function queryData(client) {
+	clientsteamid = store.get(client.uid());
+	if (clientsteamid == undefined) {
+		engine.log("Steamid undefined")
+		return;
+	}
 
-		sinusbot.http({
-		  "method": "GET",
-		  "url":    'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + config.apiKey + '&steamids=' + clientsteamid,
-		  "timeout": 6000,
-		  "headers": [
-			{"Content-Type": "application/json"}
-		  ]
-		}, function (error, response) {
-			if (typeof response != 'undefined' && response.statusCode == 200) {
-				var serverInformation = JSON.parse(response.data);
-				if (typeof serverInformation != 'undefined' || serverInformation != undefined) { 
-					if (typeof serverInformation.error != 'undefined') {
-						engine.log("API Error: " + serverInformation.error);
-					}
-					engine.log("serverInformation");
-					processData(serverInformation, client);
-				} else {
-					engine.log("ERROR: invalid response: " + response.data);
+	engine.log('Name: ' + client.name() + ' - UID: ' + client.uid());
+
+	sinusbot.http({
+	  "method": "GET",
+	  "url":    'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + config.apiKey + '&steamids=' + clientsteamid,
+	  "timeout": 6000,
+	  "headers": [
+		{"Content-Type": "application/json"}
+	  ]
+	}, function (error, response) {
+		if (typeof response != 'undefined' && response.statusCode == 200) {
+			var serverInformation = JSON.parse(response.data);
+			if (typeof serverInformation != 'undefined' || serverInformation != undefined) { 
+				if (typeof serverInformation.error != 'undefined') {
+					engine.log("API Error: " + serverInformation.error);
 				}
-		  	}
-		});
-	}
-
-
-	// ====================================================================================
-	// Problème car il ne récupère aucun client, il faudrait recharger tout les clients
-
-	//queryData();
-	//setInterval(queryData, interval);
-	//backendAllClientsByUniqueID = backend.getClientByUniqueID();
-	//for (var allClientsByUniqueID in backendAllClientsByUniqueID) {
-	//	engine.log(allClientsByUniqueID);
-	//}
-
-	//setInterval(updateAllClients, interval); 
-
-	function updateAllClients() {
-		backend.getClients().forEach(function(client) {
-			//engine.log(client.nick() + ": " + client.uid());
-			clientsteamid = store.get(client.uid());
-			queryData(client);
-		});
-	}
-
-	// ====================================================================================
-
-
-	function processData(serverInformation, client){
-		if (clientsteamid == undefined) {
-			engine.log("Steamid undefined")
-			return;
+				engine.log("serverInformation");
+				processData(serverInformation, client);
+			} else {
+				engine.log("ERROR: invalid response: " + response.data);
+			}
 		}
-		
+	});
+}
 
-		// ===================================================================================
 
-		// DEBUG
+// ====================================================================================
+// Problème car il ne récupère aucun client, il faudrait recharger tout les clients
 
-		var pseudo = serverInformation.response.players[0].personaname;
-		var ingame = serverInformation.response.players[0].gameextrainfo; // undefined
-		
-		engine.log("[SteamplayerInformation] pseudo: " + pseudo + " game: " + ingame);
+//queryData();
+//setInterval(queryData, interval);
+//backendAllClientsByUniqueID = backend.getClientByUniqueID();
+//for (var allClientsByUniqueID in backendAllClientsByUniqueID) {
+//	engine.log(allClientsByUniqueID);
+//}
 
-		//ev.client.chat("[SteamplayerInformation] pseudo: " + pseudo + " game: " + ingame + " Description : " + ev.client.Description);
+//setInterval(updateAllClients, interval); 
+
+function updateAllClients() {
+	backend.getClients().forEach(function(client) {
+		//engine.log(client.nick() + ": " + client.uid());
+		clientsteamid = store.get(client.uid());
+		queryData(client);
+	});
+}
+
+// ====================================================================================
+
+
+function processData(serverInformation, client){
+	if (clientsteamid == undefined) {
+		engine.log("Steamid undefined")
+		return;
+	}
+	
+
+	// ===================================================================================
+
+	// DEBUG
+
+	var pseudo = serverInformation.response.players[0].personaname;
+	var ingame = serverInformation.response.players[0].gameextrainfo; // undefined
+	
+	engine.log("[SteamplayerInformation] pseudo: " + pseudo + " game: " + ingame);
+
+	//ev.client.chat("[SteamplayerInformation] pseudo: " + pseudo + " game: " + ingame + " Description : " + ev.client.Description);
 	
 		// Not working
 		//client.setDescription("Jeux: " + ingame);
