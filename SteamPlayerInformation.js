@@ -25,11 +25,11 @@ registerPlugin({
 			type: 'channel'
 		},
 		{
-			name: 'interval',
-			title: 'Update Interval in minutes',
+			name: 'interval'
+			title: 'Update Interval in minutes'
 			//indent: 2,
-			type: 'number',
-			placeholder: 5
+			type: 'number'
+			placeholder: '5'
 		},
 	]
 }, function(sinusbot, config) {
@@ -61,9 +61,9 @@ registerPlugin({
 
 	event.on('clientMove', function(ev) {
 		initial_check_steamid(ev.client);
-		//if(ev.fromChannel == null && ev.toChannel.isDefault()) {
-		//	initial_check_steamid(ev.client);
-		//}
+		if(ev.fromChannel == null && ev.toChannel.isDefault()) {
+			initial_check_steamid(ev.client);
+		}
 	});
 	
 	event.on('chat', function(ev){
@@ -72,6 +72,9 @@ registerPlugin({
 	        }
 		if (ev.text.indexOf(config.steamidcommand) == 0) {
 			store.set(ev.client.uid(), ev.text.split(" ").pop());
+		}
+		else if (ev.text == "!update") {
+			updateAllClients();
 		}
 	});
 	
@@ -98,6 +101,8 @@ registerPlugin({
 			engine.log("Steamid undefined")
 			return;
 		}
+
+		engine.log('Name: ' + client.name() + ' - UID: ' + client.uid());
 
 		sinusbot.http({
 		  "method": "GET",
@@ -128,6 +133,20 @@ registerPlugin({
 
 	//queryData();
 	//setInterval(queryData, interval);
+	//backendAllClientsByUniqueID = backend.getClientByUniqueID();
+	//for (var allClientsByUniqueID in backendAllClientsByUniqueID) {
+	//	engine.log(allClientsByUniqueID);
+	//}
+
+	//setInterval(updateAllClients, interval); 
+
+	function updateAllClients() {
+		backend.getClients().forEach(function(client) {
+			//engine.log(client.nick() + ": " + client.uid());
+			clientsteamid = store.get(client.uid());
+			queryData(client);
+		});
+	}
 
 	// ====================================================================================
 
@@ -159,6 +178,8 @@ registerPlugin({
 			removeToServerGroup(client, 22);
 		}
 		else if (ingame == "H1Z1: King of the Kill") {
+			client.setDescription("Test-text");
+			engine.log("set desc");
 			addToServerGroup(client, 22);
 		}
 	}
@@ -192,8 +213,5 @@ registerPlugin({
 		}
 
 	}
-
-
-
 
 });
