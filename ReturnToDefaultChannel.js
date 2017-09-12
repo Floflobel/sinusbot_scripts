@@ -1,8 +1,8 @@
 registerPlugin({
-    name: 'Defaultchannel+',
+    name: 'ReturnToDefaultChannel',
     version: '1.0',
     description: 'The bot moves itself back into an default channel if the current channel is empty. (With channel blacklist)',
-    author: 'Diesmon <dontmindme12@web.de>',
+    author: 'Floflobel',
     vars: [
             {
                 name: 'defaultChannel',
